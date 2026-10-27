@@ -14,8 +14,8 @@ for i in range(65536):
     key = b"IOTDEV" + i.to_bytes(2, "big")
     pt = DES.new(key, DES.MODE_ECB).decrypt(message)
     if b"cns{" in pt:
-        print(f"✅ FOUND: {key!r}")
+        print(f"FOUND: {key!r}")
         print(f"   {pt!r}")
         break
 else:
-    print("❌ not found among IOTDEV + 2 bytes")
+    print("not found among IOTDEV + 2 bytes")
