@@ -1,0 +1,63 @@
+Last login: Mon Oct 26 15:48:43 on ttys000
+natalia@stud-143169162178 ~ % 
+natalia@stud-143169162178 ~ % 
+natalia@stud-143169162178 ~ % 
+natalia@stud-143169162178 ~ % 
+natalia@stud-143169162178 ~ % 
+natalia@stud-143169162178 ~ % 
+natalia@stud-143169162178 ~ % nc -zv -w 5 cns-test.idlab.uantwerpen.be 50001
+nc: connectx to cns-test.idlab.uantwerpen.be port 50001 (tcp) failed: Operation timed out
+nc: connectx to cns-test.idlab.uantwerpen.be port 50001 (tcp) failed: Operation timed out
+natalia@stud-143169162178 ~ % netstat -rn -f inet                   
+Routing tables
+
+Internet:
+Destination        Gateway            Flags               Netif Expire
+default            link#26            UCSg                utun8       
+default            192.168.128.1      UGScIg                en0       
+3.173.21.63        link#26            UHWIig              utun8       
+10                 192.168.128.1      UGSc                  en0       
+13.224.230.23      link#26            UHWIig              utun8       
+17.188.185.132     link#26            UHWIig              utun8       
+17.253.105.142     link#26            UHWIig              utun8       
+44.235.133.160     link#26            UHWIig              utun8       
+74.125.71.132      link#26            UHWIig              utun8       
+74.125.206.188     link#26            UHWIig              utun8       
+96.16.122.141      link#26            UHWIig              utun8       
+127                127.0.0.1          UCS                   lo0       
+127.0.0.1          127.0.0.1          UH                    lo0       
+143.169.162/24     link#26            UCS                 utun8       
+143.169.162.178/32 127.0.0.1          UGSc                  lo0       
+143.169.162.255    link#26            UHWIi               utun8       
+143.169.191.192/32 192.168.128.1      UGSc                  en0       
+143.169.252.201    link#26            UHWIig              utun8       
+151.101.62.214     link#26            UHWIig              utun8       
+167.235.220.62     link#26            UHWIig              utun8       
+172.16/12          192.168.128.1      UGSc                  en0       
+173.194.76.136     link#26            UHWIig              utun8       
+191.217.225.17     link#26            UHWIig              utun8       
+192.168.128/23     link#26            UCS                 utun8       
+192.168.128.1      f0:4d:d4:d:a9:c2   UHLSr                 en0       
+192.168.129.139/32 link#14            UCS                   en0      !
+193.190.66.76      link#26            UHWIig              utun8       
+224.0.0/4          link#26            UmCS                utun8       
+224.0.0/4          link#14            UmCSI                 en0      !
+255.255.255.255/32 link#26            UCS                 utun8       
+255.255.255.255/32 link#14            UCSI                  en0      !
+natalia@stud-143169162178 ~ % sudo route add -host <IP-адреса cns-test> -interface utun8
+zsh: no such file or directory: IP-адреса
+natalia@stud-143169162178 ~ % nslookup cns-test.idlab.uantwerpen.be                                 
+Server:		143.169.252.201
+Address:	143.169.252.201#53
+
+Non-authoritative answer:
+Name:	cns-test.idlab.uantwerpen.be
+Address: 143.129.80.199
+
+natalia@stud-143169162178 ~ % 
+natalia@stud-143169162178 ~ % sudo route add -host 143.129.80.199 -interface utun8
+Password:
+add host 143.129.80.199: gateway utun8
+natalia@stud-143169162178 ~ % nc -zv -w 5 143.129.80.199 50001
+nc: connectx to 143.129.80.199 port 50001 (tcp) failed: Operation timed out
+natalia@stud-143169162178 ~ %  
