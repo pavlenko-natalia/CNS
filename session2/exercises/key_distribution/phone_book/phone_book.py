@@ -43,6 +43,7 @@ def elgamal_decrypt(c1, c2, x, p):
     m = (c2 * s_inv) % p
     return m
 
+#long_to_bytes
 def int_to_bytes(m):
     length = (m.bit_length() + 7) // 8
     return m.to_bytes(length, "big")
